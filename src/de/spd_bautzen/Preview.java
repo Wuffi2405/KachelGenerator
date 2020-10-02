@@ -2,7 +2,7 @@ package de.spd_bautzen;
 
 import java.util.List;
 
-import javafx.scene.image.ImageView;
+import javax.swing.text.html.ImageView;
 
 public class Preview {
 	
