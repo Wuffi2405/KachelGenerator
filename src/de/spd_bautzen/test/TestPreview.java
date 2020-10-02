@@ -11,7 +11,7 @@ import de.spd_bautzen.Preview;
 
 class TestPreview {
 	Preview preview;
-
+	
 	@Test
 	void PREVIEW_preview_null() {
 		boolean thrown = false;

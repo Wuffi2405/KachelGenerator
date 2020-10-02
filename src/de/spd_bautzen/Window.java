@@ -1,5 +1,7 @@
 package de.spd_bautzen;
 
+import java.util.List;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -14,8 +16,9 @@ public class Window {
 		
 	}
 	
-	public void setPreviewElements() {
-		
+	public void setPreviewElements(List<Element> elements) {
+		if(elements == null)
+			throw new NullPointerException();
 	}
 	
 }

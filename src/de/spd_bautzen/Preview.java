@@ -15,6 +15,7 @@ public class Preview {
 			throw new NullPointerException();
 
 		this.elements = elements;
+		
 	}
 
 	public boolean updateElement(String elementName, String attributeName, String value) {
@@ -30,7 +31,7 @@ public class Preview {
 	}
 
 	public void updateImage() {
-
+		
 	}
 
 }
