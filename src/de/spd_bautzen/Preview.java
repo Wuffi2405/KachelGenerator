@@ -1,25 +1,36 @@
 package de.spd_bautzen;
 
-import java.util.List;
+import java.util.Map;
 
 import javafx.scene.image.ImageView;
 
 public class Preview {
-	
+
 	private ImageView imageView;
-	private List<Element> elements;
+	private Map<String, Element> elements;
 	private Generator generator;
-	
-	public Preview(List elements) {
-		
+
+	public Preview(Map<String, Element> elements) {
+		if (elements == null)
+			throw new NullPointerException();
+
+		this.elements = elements;
 	}
-	
-	private boolean updateElement(String key, String value) {
+
+	public boolean updateElement(String elementName, String attributeName, String value) {
+		if (elements.containsKey(elementName)) {
+			if (elements.get(elementName).getAttribute(attributeName) != null) {
+				if (value != null && !value.isEmpty()) {
+					elements.get(elementName).setAttribute(attributeName, value);
+					return true;
+				}
+			}
+		}
 		return false;
 	}
-	
-	private void updateImage() {
-		
+
+	public void updateImage() {
+
 	}
-	
+
 }

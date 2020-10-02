@@ -1,18 +1,24 @@
 package de.spd_bautzen;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Element {
 	
 	public ElementType type;
-	private Map attributes;
+	private Map<String, String> attributes;
 	
-	public Element() {
-		
+	public Element(ElementType type) {
+		attributes = new HashMap<String, String>();
 	}
 	
-	private String getAttribut(String key) {
-		return null;
+	public String getAttribute(String key) {
+		return attributes.get(key);
+	}
+	
+	
+	public void setAttribute(String key, String value) {
+		attributes.put(key, value);
 	}
 	
 }
