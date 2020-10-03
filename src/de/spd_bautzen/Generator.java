@@ -7,18 +7,23 @@ import java.util.List;
 public class Generator {
 	
 	private BufferedImage image;
-	private List elements;
+	private List<Element> elements;
 	
 	public Generator() {
 		
 	}
 	
-	public void generate() {
+	public void generate(List<Element> elements) {
+		if(elements == null)
+			throw new NullPointerException();
 		
+		this.elements = elements;
+		
+		image = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 	}
 	
 	public Image getImage() {
-		return null;
+		return image;
 	}
 	
 }
