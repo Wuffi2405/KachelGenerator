@@ -1,22 +1,22 @@
 package de.spd_bautzen;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoadInterpreter {
 	
-	private List<Element> elements;
+	public List<Element> elements;
 	
 	public LoadInterpreter() {
-		
+		elements = new ArrayList<Element>();
 	}
 	
-	public List getElements() {
-		return null;
+	public List<Element> getElements() {
+		return elements;
 	}
 	
-	public void readXML(File source) {
-		
+	public void readXML(File source){
 	}
 	
 }
