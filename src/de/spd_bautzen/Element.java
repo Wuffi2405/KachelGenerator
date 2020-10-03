@@ -7,7 +7,7 @@ public class Element {
 	public ElementType type;
 	private Map attributes;
 	
-	public Element() {
+	public Element(ElementType type) {
 		
 	}
 	
