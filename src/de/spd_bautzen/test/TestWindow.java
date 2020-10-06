@@ -10,7 +10,7 @@ class TestWindow {
 
 	@Test
 	void WINDOW_setPreviewElements_null() {
-		Window window = new Window();
+		Window window = new Window(1, 1);
 		boolean thrown = false;
 		try {
 			window.setPreviewElements(null);
