@@ -33,7 +33,7 @@ class TestGenerator {
 		Element e = new Element(ElementType.IMAGE);
 		es.add(e);
 		g.generate(es);
-		
+
 		assertTrue(g.getImage() != null, "getImage should return image");
 	}
 }

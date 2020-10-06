@@ -37,23 +37,23 @@ class TestElement {
 		boolean thrown = false;
 		try {
 			e.getAttribute(null);
-		}catch(Exception ex) {
-			if(ex.getClass() == NullPointerException.class) {
+		} catch (Exception ex) {
+			if (ex.getClass() == NullPointerException.class) {
 				thrown = true;
 			}
 		}
 		assertTrue(thrown, "null argument in getAttributeValue did not throw nullpointer exception");
 		try {
 			e.getAttribute("");
-		}catch(Exception ex) {
-			if(ex.getClass() == NullPointerException.class) {
+		} catch (Exception ex) {
+			if (ex.getClass() == NullPointerException.class) {
 				thrown = true;
 			}
 		}
 		assertTrue(thrown, "empty string in getAttributeValue did not throw nullpointer exception");
 		assertTrue(e.getAttribute("was") == null, "wrong return value when element does not have attribute");
 		assertTrue(e.getAttribute("wasser").equals("nass"), "wrong return value when element does have attribute");
-		
+
 	}
 
 }

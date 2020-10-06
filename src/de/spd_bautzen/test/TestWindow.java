@@ -14,8 +14,8 @@ class TestWindow {
 		boolean thrown = false;
 		try {
 			window.setPreviewElements(null);
-		}catch(Exception e) {
-			if(e.getClass() == NullPointerException.class) {
+		} catch (Exception e) {
+			if (e.getClass() == NullPointerException.class) {
 				thrown = true;
 			}
 		}
