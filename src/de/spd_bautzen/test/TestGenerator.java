@@ -34,6 +34,6 @@ class TestGenerator {
 		es.add(e);
 		g.generate(es);
 
-		assertTrue(g.getImage() != null, "getImage should return image");
+		assertTrue(g.getImage(10, 10) != null, "getImage should return image");
 	}
 }

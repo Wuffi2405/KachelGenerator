@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -34,16 +36,6 @@ public class Window {
 		JMenuItem open = new JMenuItem();
 		open.setSize(width / 4, 20);
 		open.setText("Öffnen");
-		open.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getModifiers() == 16) {
-					JFileChooser fileChooser = new JFileChooser();
-					fileChooser.showOpenDialog(null);
-					frame.setTitle(windowName + " | " + fileChooser.getSelectedFile().getAbsolutePath());
-				}
-			}
-		});
 
 		JMenuItem save = new JMenuItem();
 		save.setSize(width / 4, 20);
@@ -52,7 +44,7 @@ public class Window {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getModifiers() == 16) {
-					JFileChooser fileChooser = new JFileChooser();
+					fileChooser = new JFileChooser();
 					fileChooser.showSaveDialog(null);
 				}
 			}
@@ -69,6 +61,18 @@ public class Window {
 
 		frame.setLayout(null);
 		frame.add(menubar);
+
+		open.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getModifiers() == 16) {
+					fileChooser = new JFileChooser();
+					fileChooser.showOpenDialog(null);
+					openFile(fileChooser.getSelectedFile().getAbsolutePath());
+				}
+			}
+		});
+
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -77,13 +81,25 @@ public class Window {
 				}
 			}
 		});
+		frame.setResizable(false);
 		frame.setVisible(true);
+
+		openFile("C:\\Users\\fabiu\\Documents\\desktop.ini");
+
 	}
 
 	public void setPreviewElements(List<Element> elements) {
 		if (elements == null)
 			throw new NullPointerException();
 
+	}
+
+	public void openFile(String name) {
+		frame.setTitle(windowName + " | " + name);
+		loadInterpreter = new LoadInterpreter();
+		frame.add(loadInterpreter.readXML(new File(name)));
+		frame.revalidate();
+		frame.repaint();
 	}
 
 }

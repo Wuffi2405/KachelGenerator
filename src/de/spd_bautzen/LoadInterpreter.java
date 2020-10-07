@@ -2,6 +2,7 @@ package de.spd_bautzen;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LoadInterpreter {
@@ -16,7 +17,8 @@ public class LoadInterpreter {
 		return elements;
 	}
 
-	public void readXML(File source) {
+	public Preview readXML(File source) {
+		return new Preview(new HashMap<String, Element>());
 	}
 
 }
