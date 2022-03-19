@@ -1,40 +1,32 @@
 import xml.etree.ElementTree as ET
+from FileManager import FileManager
+from flask import Flask, redirect, render_template, request
+import os
 
-from flask import Flask, render_template, request, redirect
 
+fileManager = FileManager()
 
 app = Flask(__name__)
-app.secret_key = "warum gibt es das"
 
-print(__name__)
 
 @app.route("/", methods = ['GET'])
-def hello_world(_svg_upload=""):
-    print(_svg_upload)
-    return render_template("index.html", svg_upload=_svg_upload)
+def index():
+
+    path = os.getcwd() + 'static\svg templates'
+    return render_template("index.html")
 
 
-tree = ET.parse('static/test.svg')
-root = tree.getroot()
+@app.route("/allocate", methods = ['GET'])
+def allocate():
 
-elementList = []
-
-
-todoList = [root]
-while(len(todoList)):
-    nextList = []
-    for element in todoList:
-        attributes = element.attrib
-        if "{http://www.spd-bautzen.de/kg}element" in attributes:
-            print("found", element, attributes)
-            elementList.append(element)
-
-        for child in element:
-            nextList.append(child)
-    todoList = nextList
+    uuid = fileManager.allocateTemplate(request.args.get("templateId"))
+    return redirect("/edit?folder=" + uuid)
 
 
-elementList[0].text = "fhsfhsaFHSLFSHAdf"
-tree.write('output.svg')
+@app.route("/edit", methods = ['GET'])
+def editor(imgUUID=0):
 
-#test
+    if imgUUID == 0:
+        redirect("/")
+
+    return render_template("editor.html", folder=request.args.get('folder'))
