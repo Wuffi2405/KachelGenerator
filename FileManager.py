@@ -7,12 +7,15 @@ class FileManager:
     def __init__(self):
         pass
 
-    def allocateTemplate(self, template_id):
+    def allocateTemplate(self, templateID):
+
+
         uuidString = str(uuid.uuid4().hex)
         path = os.getcwd() + "/static/temp/" + uuidString
-        print(path)
         os.mkdir(path)
 
-        shutil.copy2("static\svg templates\Vorlage1.svg", "static/temp/" + uuidString + "/tempimg.svg")
+        templateFiles = [f for f in os.listdir("static/svg templates/") if os.path.isfile(os.path.join("static/svg templates/", f))]
+        print("CREATED NEW WORKSPACE FOLDER FOR TEMPLATE", templateFiles[templateID])
+        shutil.copy2("static/svg templates/" + templateFiles[templateID], "static/temp/" + uuidString + "/tempimg.svg")
 
         return uuidString

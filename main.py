@@ -19,7 +19,7 @@ def index():
 @app.route("/allocate", methods = ['GET'])
 def allocate():
 
-    uuid = fileManager.allocateTemplate(request.args.get("templateId"))
+    uuid = fileManager.allocateTemplate(int(request.args.get("templateID")))
     return redirect("/edit?folder=" + uuid)
 
 
