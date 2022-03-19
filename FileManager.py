@@ -15,7 +15,7 @@ class FileManager:
         os.mkdir(path)
 
         templateFiles = [f for f in os.listdir("static/svg templates/") if os.path.isfile(os.path.join("static/svg templates/", f))]
-        print("CREATED NEW WORKSPACE FOLDER FOR TEMPLATE", templateFiles[templateID])
-        shutil.copy2("static/svg templates/" + templateFiles[templateID], "static/temp/" + uuidString + "/tempimg.svg")
+        print("CREATED NEW WORKSPACE FOLDER FOR TEMPLATE", templateFiles[templateID % len(templateFiles)])
+        shutil.copy2("static/svg templates/" + templateFiles[templateID % len(templateFiles)], "static/temp/" + uuidString + "/tempimg.svg")
 
         return uuidString

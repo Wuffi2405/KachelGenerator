@@ -29,4 +29,9 @@ def editor(imgUUID=0):
     if imgUUID == 0:
         redirect("/")
 
-    return render_template("editor.html", folder=request.args.get('folder'))
+    folderUUID = request.args.get('folder')
+
+    if folderUUID not in [f for f in os.listdir("static/temp/") if os.path.isdir(os.path.join("static/temp/", f))]:
+        return redirect("/")
+
+    return render_template("editor.html", folder=folderUUID)
