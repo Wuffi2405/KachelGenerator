@@ -1,14 +1,14 @@
 import xml.etree.ElementTree as ET
 
 from flask import Flask, render_template, request, redirect
-
-
+ 
 app = Flask(__name__)
 app.secret_key = "warum gibt es das"
 
 print(__name__)
 
-@app.route("/", methods = ['GET'])
+
+@app.route("/", methods=['GET'])
 def hello_world(_svg_upload=""):
     print(_svg_upload)
     return render_template("index.html", svg_upload=_svg_upload)
