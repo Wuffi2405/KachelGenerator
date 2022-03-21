@@ -9,6 +9,8 @@ class FileManager:
 
     def allocateTemplate(self, templateID):
 
+        if len([f for f in os.listdir("static/temp/") if os.path.isdir(os.path.join("static/temp/", f))]) >= 20:
+            return ""
 
         uuidString = str(uuid.uuid4().hex)
         path = os.getcwd() + "/static/temp/" + uuidString

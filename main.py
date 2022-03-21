@@ -20,6 +20,8 @@ def index():
 def allocate():
 
     uuid = fileManager.allocateTemplate(int(request.args.get("templateID")))
+    if uuid == "":
+        return redirect("/")
     return redirect("/edit?folder=" + uuid)
 
 
@@ -35,3 +37,14 @@ def editor(imgUUID=0):
         return redirect("/")
 
     return render_template("editor.html", folder=folderUUID)
+
+
+
+"""
+SESSION_COOKIE_SECURE = True
+REMEMBER_COOKIE_SECURE = True
+
+SESSION_COOKIE_HTTPONLY = True
+REMEMBER_COOKIE_HTTPONLY = True
+
+"""
