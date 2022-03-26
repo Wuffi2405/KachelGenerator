@@ -1,4 +1,3 @@
-import xml.etree.ElementTree as ET
 from FileManager import FileManager
 from flask import Flask, redirect, render_template, request
 
