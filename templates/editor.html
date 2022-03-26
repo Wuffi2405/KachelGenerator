@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="static/AJAX.js"></script>
+
+</head>
+<body>
+    {% if image %}
+        <img src="static/{{image}}.svg" width="500px" height="500px" background="#FF0000" id="display_image"></img>
+        {% for element in elements %}
+            {% if element.type == 'text' %}
+                <a>{{ element.type }}</a>
+                <a>{{ element.value }}</a>
+                <input type="text" value="{{element.value}}" oninput="changeEventHandler(this.value, '{{ element.id }}', '{{image}}')">
+            {% else %}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        VORLAGEN
+
+        {% for e in templates %}
+            <br>    
+            <a href="editor?id={{e}}">{{e}}</a>
+        {% endfor %}
+
+    {% endif %}
+
+    
+</body>
+</html>
