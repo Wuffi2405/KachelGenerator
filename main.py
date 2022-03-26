@@ -19,7 +19,6 @@ root = tree.getroot()
 
 elementList = []
 
-
 todoList = [root]
 while(len(todoList)):
     nextList = []
