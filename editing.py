@@ -30,9 +30,7 @@ class Editing:
         return elementList
 
     def update(self, id, image, value):
-
         print("[KG] updating sharepic")
-
         todoList = [self.root]
         while(len(todoList)):
             nextList = []
@@ -43,9 +41,8 @@ class Editing:
                         element.text = value
                         todoList = []
                         break
-
                 for child in element:
                     nextList.append(child)
             todoList = nextList
 
-        self.tree.write('static/' + image + '.svg')
+        self.tree.write(image)

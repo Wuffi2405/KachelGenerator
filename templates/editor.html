@@ -12,11 +12,10 @@
 </head>
 <body>
     {% if image %}
-        <img src="static/{{image}}.svg" width="500px" height="500px" background="#FF0000" id="display_image"></img>
+        <img src="{{image}}" width="500px" height="500px" background="#FF0000" id="display_image"></img>
         {% for element in elements %}
             {% if element.type == 'text' %}
                 <a>{{ element.type }}</a>
-                <a>{{ element.value }}</a>
                 <input type="text" value="{{element.value}}" oninput="changeEventHandler(this.value, '{{ element.id }}', '{{image}}')">
             {% else %}
             {% endif %}

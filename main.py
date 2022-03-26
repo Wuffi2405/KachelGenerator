@@ -4,10 +4,12 @@ import xml.etree.ElementTree as ET
 from flask import Flask, jsonify, render_template, request, redirect
 from editing import Editing
 from element import Element
+from FileManager import FileManager
 
 import glob
 
 app = Flask(__name__)
+fileManager = FileManager()
 
 
 @app.route("/", methods=['GET'])
@@ -21,16 +23,18 @@ def editor():
 
     # check if we editing or not
     if request.args.get('id') is None:
-        templates = [x[7:-4] for x in glob.glob("static/*.svg")]
+        templates = [x[7:] for x in glob.glob("static/*.svg")]
         return render_template("editor.html", templates=templates)
-
-    image = 'static/' + request.args.get('id') + '.svg'
-    sharepic = Editing(image)
-
-    elements = [Element(element) for element in sharepic.loadElements()]
-
-    return render_template("editor.html", image=request.args.get('id'), elements=elements)
-
+    try:
+        svgName = request.args.get('id')
+        userFoldUUID = fileManager.allocateTemplate(svgName)
+        image = 'static/temp/' + userFoldUUID + '/' + svgName
+        sharepic = Editing(image)
+        elements = [Element(element) for element in sharepic.loadElements()]
+        return render_template("editor.html", image=image, elements=elements)
+    except Exception as ex:
+        print(ex)
+        return redirect("/editor")
 #
 # handle ajax request for updating sharepics
 #
@@ -42,10 +46,10 @@ def process():
     id = request.form['id']
     value = request.form['value']
 
-    sharepic = Editing('static/' + image + '.svg')
+    sharepic = Editing(image)
     sharepic.update(id, image, value)
 
-    return jsonify({'url': 'static/' + image + '.svg'})
+    return jsonify({'url': image})
 
 
 # elementList[0].text = "fhsfhsaFHSLFSHAdf"
