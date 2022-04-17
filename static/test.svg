@@ -64,6 +64,7 @@
          x="6.8035669"
          y="50.559521"
          style="font-size:50.79999924px;stroke-width:0.26458332"
-         kg:element="text">LOLOLOL</tspan></text>
+         kg:type="text"
+         kg:id="1">LOLOLOL</tspan></text>
   </g>
 </svg>
